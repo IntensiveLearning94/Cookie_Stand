@@ -8,7 +8,7 @@ parentEl.appendChild(child);
 var seattle = {
   shopHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'total'],
   hourTotals: [],
-  locationName: 'Salmon Cookies',
+  locationName: 'Seattle',
   minCust: 23,
   maxCust: 65,
   avCookie: 6.3,
@@ -45,5 +45,56 @@ var seattle = {
 };
 
 seattle.render();
+
+
+
+
+var parentE2 = document.getElementById('tokyoElement');
+// parentE2.textContent = 'attempting to contact html.';
+
+var child2 = document.createElement('h1');
+child2.textContent = 'Tokyo: ';
+parentE2.appendChild(child2);
+
+var tokyo = {
+  shopHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'total'],
+  hourTotals: [],
+  locationName: 'Tokyo',
+  minCust: 3,
+  maxCust: 24,
+  avCookie: 1.2,
+
+  getRandomInt: function (minCust, maxCust) {
+    minCust = Math.ceil(minCust);
+    maxCust = Math.floor(maxCust);
+    return Math.floor(Math.random() * (maxCust - minCust)) + minCust; //The maximum is exclusive and the minimum is inclusive
+  },
+
+  customerHour: function () {
+    for (var i = 0; i < this.shopHours.length; i++) {
+      var randomCustomerCount = this.getRandomInt(this.minCust, this.maxCust);
+      console.log(randomCustomerCount);
+      this.hourTotals.push(randomCustomerCount);
+    }
+  },
+
+  render: function () {
+    this.customerHour();
+    var totalCookies = 0;
+    for (var i = 0; i < this.shopHours.length; i++) {
+      var childE2 = document.createElement('li');
+      childE2.textContent = 'Shop Hours: ' + this.shopHours[i];
+      var cookiesPerHour = Math.ceil(this.avCookie * this.hourTotals[i]);
+      totalCookies = totalCookies + cookiesPerHour;
+      childE2.textContent = `Hours: ${this.shopHours[i]} ~Customers: ${this.hourTotals[i]} ~Cookies: ${cookiesPerHour}`;
+      parentE2.appendChild(childE2);
+    }
+    var totalCookiesEl = document.createElement('li');
+    totalCookiesEl.textContent = `Total cookies: ${totalCookies}`;
+    parentE2.appendChild(totalCookiesEl);
+  }
+};
+
+tokyo.render();
 
 
