@@ -45,7 +45,6 @@ var thead = document.createElement('th');
 var tdata = document.createElement('td');
 
 
-
 function headerRow() {
   row = document.createElement('tr');
   thead = document.createElement('th');
@@ -79,6 +78,7 @@ Store.prototype.storeData = function () {
   table.appendChild(row);
 };
 
+
 this.getRandomInt = function (minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust)) + minCust;
 }; //The maximum is exclusive and the minimum is inclusive
@@ -86,7 +86,7 @@ this.getRandomInt = function (minCust, maxCust) {
 var footerRow = function () {
   var row = document.createElement('tr');
   var tdata = document.createElement('td');
-  row.textContent = 'Totals:';
+  tdata.textContent = 'Totals:';
   row.appendChild(tdata);
 
   for (var i = 0; i < shopHours.length; i++) {
@@ -94,18 +94,17 @@ var footerRow = function () {
     var tdataEl = document.createElement('td');
     for (var j = 0; j < allStores.length; j++) {
       hourTotals += allStores[j].hourTotals[i];
-      // console.log('ALL STORES x HOUR TOTALS:', allStores[j].hourTotals[i]);
+      console.log('ALL STORES x HOUR TOTALS:', allStores[j].hourTotals[i]);
     }
 
     tdataEl.textContent = hourTotals;
     row.appendChild(tdataEl);
+    // console.log(hourTotals);
   }
   // var tdataE = document.createElement('td');
   // row.appendChild(tdataE);
   table.appendChild(row);
 };
-
-
 
 
 // eslint-disable-next-line no-unused-vars
@@ -123,6 +122,46 @@ var parisStore = new Store('Paris', 20, 38, 2.3);
 // console.log("PARIS HOURS TOTAL",parisStore.hourTotals);
 
 
-console.log('allStores:', allStores[0].hourTotals[0]);
+// function total() {
+//   for (i = 0; i <= this.hourTotals.length; i++)
+//   {
+//     var numF = numFunc(); //store the output from the function in a variable
+//     var sum = sum + numF; //Get the sum of all 5 variables
+//   }
+//   console.log(sum);
 
+// }
+// total();
+
+
+var userForm = document.getElementById('user-form');
+userForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  var locationName = event.target.locationName.value;
+  var minimumCustomers = event.target.minimumCustomers.value;
+  var maximumCustomers = event.target.maximumCustomers.value;
+  var averageCookies = event.target.averageCookies.value;
+
+  // console.log(locationName);
+  // console.log(minimumCustomers);
+  // console.log(maximumCustomers);
+  // console.log(averageCookies);
+
+  if (isNaN(averageCookies)) {
+    alert('Please enter a number');
+    event.target.averageCookies.value = null;
+  }
+  if (isNaN(minimumCustomers)) {
+    event.target.minimumCustomers.value = null;
+  }
+  if (isNaN(maximumCustomers)) {
+    event.target.maximumCustomers.value = null;
+  }
+  var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
+  console.log(allStores);
+  // shopHours
+}
 footerRow();
