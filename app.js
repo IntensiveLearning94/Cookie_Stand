@@ -83,28 +83,6 @@ this.getRandomInt = function (minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust)) + minCust;
 }; //The maximum is exclusive and the minimum is inclusive
 
-var footerRow = function () {
-  var row = document.createElement('tr');
-  var tdata = document.createElement('td');
-  tdata.textContent = 'Totals:';
-  row.appendChild(tdata);
-
-  for (var i = 0; i < shopHours.length; i++) {
-    var hourTotals = 0;
-    var tdataEl = document.createElement('td');
-    for (var j = 0; j < allStores.length; j++) {
-      hourTotals += allStores[j].hourTotals[i];
-      console.log('ALL STORES x HOUR TOTALS:', allStores[j].hourTotals[i]);
-    }
-
-    tdataEl.textContent = hourTotals;
-    row.appendChild(tdataEl);
-    // console.log(hourTotals);
-  }
-  // var tdataE = document.createElement('td');
-  // row.appendChild(tdataE);
-  table.appendChild(row);
-};
 
 
 // eslint-disable-next-line no-unused-vars
@@ -134,10 +112,10 @@ var parisStore = new Store('Paris', 20, 38, 2.3);
 // total();
 
 
-var userForm = document.getElementById('user-form');
-userForm.addEventListener('submit', handleSubmit);
+var userForm = document.getElementById('user-form'); //operating on the DOM//
+userForm.addEventListener('submit', addLocation);
 
-function handleSubmit(event) {
+function addLocation(event) {
   event.preventDefault();
 
   var locationName = event.target.locationName.value;
@@ -145,11 +123,35 @@ function handleSubmit(event) {
   var maximumCustomers = event.target.maximumCustomers.value;
   var averageCookies = event.target.averageCookies.value;
 
-  // console.log(locationName);
-  // console.log(minimumCustomers);
-  // console.log(maximumCustomers);
-  // console.log(averageCookies);
+  // if (!locationName || !minimumCustomers || maximumCustomers || averageCookies) {
+  //   return alert('Fields Cannot be empty');
+  // } this is whats happening with the use of HTML 5
 
+
+  var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
+  console.log(allStores);
+  // shopHours
+}
+var footerRow = function () {
+  var row = document.createElement('tr');
+  var tdata = document.createElement('td');
+  tdata.textContent = 'Totals:';
+  row.appendChild(tdata);
+  for (var i = 0; i < shopHours.length; i++) {
+    var hourTotals = 0;
+    var tdataEl = document.createElement('td');
+    for (var j = 0; j < allStores.length; j++) {
+      hourTotals += allStores[j].hourTotals[i];
+    }
+
+    tdataEl.textContent = hourTotals;
+    row.appendChild(tdataEl);
+    // console.log(hourTotals);
+  }
+  // var tdataE = document.createElement('td');
+  // row.appendChild(tdataE);
+  table.appendChild(row);
+  Store.prototype.footerRow();
   if (isNaN(averageCookies)) {
     alert('Please enter a number');
     event.target.averageCookies.value = null;
@@ -160,8 +162,6 @@ function handleSubmit(event) {
   if (isNaN(maximumCustomers)) {
     event.target.maximumCustomers.value = null;
   }
-  var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
-  console.log(allStores);
-  // shopHours
-}
+};
+
 footerRow();
