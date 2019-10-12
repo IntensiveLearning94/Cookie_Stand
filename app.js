@@ -16,8 +16,9 @@ Store.prototype.customerPerHour = function () {
     var cookiesSoldPerHour = Math.ceil((getRandomInt(this.minimumCustomers, this.maximumCustomers)) * this.averageCookies);
     // console.log(cookiesSoldPerHour);
     this.hourTotals.push(cookiesSoldPerHour);
-  }
+  }console.log(cookiesSoldPerHour);
 };
+
 
 function Store(locationName, minimumCustomers, maximumCustomers, averageCookies) {
   this.locationName = locationName;
@@ -97,21 +98,6 @@ var dubaiStore = new Store('Dubai', 11, 38, 2.3);
 // eslint-disable-next-line no-unused-vars
 var parisStore = new Store('Paris', 20, 38, 2.3);
 
-// console.log("PARIS HOURS TOTAL",parisStore.hourTotals);
-
-
-// function total() {
-//   for (i = 0; i <= this.hourTotals.length; i++)
-//   {
-//     var numF = numFunc(); //store the output from the function in a variable
-//     var sum = sum + numF; //Get the sum of all 5 variables
-//   }
-//   console.log(sum);
-
-// }
-// total();
-
-
 var userForm = document.getElementById('user-form'); //operating on the DOM//
 userForm.addEventListener('submit', addLocation);
 
@@ -122,11 +108,6 @@ function addLocation(event) {
   var minimumCustomers = event.target.minimumCustomers.value;
   var maximumCustomers = event.target.maximumCustomers.value;
   var averageCookies = event.target.averageCookies.value;
-
-  // if (!locationName || !minimumCustomers || maximumCustomers || averageCookies) {
-  //   return alert('Fields Cannot be empty');
-  // } this is whats happening with the use of HTML 5
-
 
   var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
   console.log(allStores);
@@ -148,8 +129,7 @@ var footerRow = function () {
     row.appendChild(tdataEl);
     // console.log(hourTotals);
   }
-  // var tdataE = document.createElement('td');
-  // row.appendChild(tdataE);
+
   table.appendChild(row);
   Store.prototype.footerRow();
   if (isNaN(averageCookies)) {
