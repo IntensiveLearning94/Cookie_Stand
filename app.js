@@ -16,7 +16,7 @@ Store.prototype.customerPerHour = function () {
     var cookiesSoldPerHour = Math.ceil((getRandomInt(this.minimumCustomers, this.maximumCustomers)) * this.averageCookies);
     // console.log(cookiesSoldPerHour);
     this.hourTotals.push(cookiesSoldPerHour);
-  }console.log(cookiesSoldPerHour);
+  } console.log(cookiesSoldPerHour);
 };
 
 
@@ -98,10 +98,10 @@ var dubaiStore = new Store('Dubai', 11, 38, 2.3);
 // eslint-disable-next-line no-unused-vars
 var parisStore = new Store('Paris', 20, 38, 2.3);
 
+
+
 var userForm = document.getElementById('user-form'); //operating on the DOM//
 userForm.addEventListener('submit', addLocation);
-
-
 
 
 function addLocation(event) {
@@ -121,24 +121,23 @@ function addLocation(event) {
   // table.innerHTML= '' ;
 
   // shopHours
-}
-
-var footerRow = function () {
-  var row = document.createElement('tr');
-  var tdata = document.createElement('td');
-  tdata.textContent = 'Totals:';
-  row.appendChild(tdata);
-  for (var i = 0; i < shopHours.length; i++) {
-    var hourTotals = 0;
-    var tdataEl = document.createElement('td');
-    for (var j = 0; j < allStores.length; j++) {
-      hourTotals += allStores[j].hourTotals[i];
+  var footerRow = function () {
+    var row = document.createElement('tr');
+    var tdata = document.createElement('td');
+    tdata.textContent = 'Totals:';
+    row.appendChild(tdata);
+    for (var i = 0; i < shopHours.length; i++) {
+      var hourTotals = 0;
+      var tdataEl = document.createElement('td');
+      for (var j = 0; j < allStores.length; j++) {
+        hourTotals += allStores[j].hourTotals[i];
+      }
+      tdataEl.textContent = hourTotals;
+      row.appendChild(tdataEl);
+      // console.log(hourTotals);
     }
+  };
 
-    tdataEl.textContent = hourTotals;
-    row.appendChild(tdataEl);
-    // console.log(hourTotals);
-  }
 
   table.appendChild(row);
   Store.prototype.footerRow();
@@ -152,7 +151,7 @@ var footerRow = function () {
   }
   if (isNaN(maximumCustomers)) {
     event.target.maximumCustomers.value = null;
+    footerRow();
   }
-};
+}
 
-footerRow();
