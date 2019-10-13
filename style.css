@@ -1,7 +1,26 @@
-body {
+/* body {
     background-color: rgb(233, 124, 0);
+} */
+
+ #tableElement {
+  margin-left: 4in;
+  font-size: 14pt;
+} 
+
+fieldset {
+    margin-left: 2in;
 }
 
-text {
-    color: azure;
+
+body { 
+    color: rgb(14, 12, 12);
+    background-color: rgb(199, 183, 147); 
+    }
+
+    img {
+        margin-left: 3in;
+    }
+
+h1 {
+    margin-left: 4.5in;
 }

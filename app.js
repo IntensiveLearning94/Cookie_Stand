@@ -101,8 +101,14 @@ var parisStore = new Store('Paris', 20, 38, 2.3);
 var userForm = document.getElementById('user-form'); //operating on the DOM//
 userForm.addEventListener('submit', addLocation);
 
+
+
+
 function addLocation(event) {
   event.preventDefault();
+
+
+
 
   var locationName = event.target.locationName.value;
   var minimumCustomers = event.target.minimumCustomers.value;
@@ -111,8 +117,12 @@ function addLocation(event) {
 
   var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
   console.log(allStores);
+
+  // table.innerHTML= '' ;
+
   // shopHours
 }
+
 var footerRow = function () {
   var row = document.createElement('tr');
   var tdata = document.createElement('td');
@@ -132,6 +142,7 @@ var footerRow = function () {
 
   table.appendChild(row);
   Store.prototype.footerRow();
+
   if (isNaN(averageCookies)) {
     alert('Please enter a number');
     event.target.averageCookies.value = null;
