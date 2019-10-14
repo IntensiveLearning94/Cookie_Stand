@@ -22,11 +22,12 @@ position: absolute;
 top:2in;
 }
 
+
 p {
-    position: absolute;
-    top:2.1in;
-    display: inline-block;
+     position: absolute; 
+   margin-top: 1in;
 }
+
 
 body { 
     color: rgb(14, 12, 12);
