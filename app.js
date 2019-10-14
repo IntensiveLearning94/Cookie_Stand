@@ -83,9 +83,6 @@ Store.prototype.storeData = function () {
 this.getRandomInt = function (minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust)) + minCust;
 }; //The maximum is exclusive and the minimum is inclusive
-
-
-
 // eslint-disable-next-line no-unused-vars
 var seattleStore = new Store('Seattle', 23, 65, 6.3);
 // console.log(seattleStore);
@@ -98,47 +95,38 @@ var dubaiStore = new Store('Dubai', 11, 38, 2.3);
 // eslint-disable-next-line no-unused-vars
 var parisStore = new Store('Paris', 20, 38, 2.3);
 
-
-
 var userForm = document.getElementById('user-form'); //operating on the DOM//
 userForm.addEventListener('submit', addLocation);
-
 
 function addLocation(event) {
   event.preventDefault();
 
-
-
+  var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
+  console.log(allStores);
 
   var locationName = event.target.locationName.value;
   var minimumCustomers = event.target.minimumCustomers.value;
   var maximumCustomers = event.target.maximumCustomers.value;
   var averageCookies = event.target.averageCookies.value;
-
-  var custInput = new Store(locationName, minimumCustomers, maximumCustomers, averageCookies);
-  console.log(allStores);
-
   // table.innerHTML= '' ;
-
   // shopHours
-  var footerRow = function () {
-    var row = document.createElement('tr');
-    var tdata = document.createElement('td');
-    tdata.textContent = 'Totals:';
-    row.appendChild(tdata);
-    for (var i = 0; i < shopHours.length; i++) {
-      var hourTotals = 0;
-      var tdataEl = document.createElement('td');
-      for (var j = 0; j < allStores.length; j++) {
-        hourTotals += allStores[j].hourTotals[i];
-      }
-      tdataEl.textContent = hourTotals;
-      row.appendChild(tdataEl);
-      // console.log(hourTotals);
+
+}
+var footerRow = function () {
+  var row = document.createElement('tr');
+  var tdata = document.createElement('td');
+  tdata.textContent = 'Totals:';
+  row.appendChild(tdata);
+  for (var i = 0; i < shopHours.length; i++) {
+    var hourTotals = 0;
+    var tdataEl = document.createElement('td');
+    for (var j = 0; j < allStores.length; j++) {
+      hourTotals += allStores[j].hourTotals[i];
     }
-  };
-
-
+    tdataEl.textContent = hourTotals;
+    row.appendChild(tdataEl);
+    // console.log(hourTotals);
+  }
   table.appendChild(row);
   Store.prototype.footerRow();
 
@@ -151,7 +139,7 @@ function addLocation(event) {
   }
   if (isNaN(maximumCustomers)) {
     event.target.maximumCustomers.value = null;
-    footerRow();
   }
-}
+};
 
+footerRow();
